@@ -13,6 +13,7 @@ Authors
 -------
 
 `FBFetchedResultsController` was written at Facebook by [Nicolas Spiegelberg](https://www.facebook.com/nspiegelberg).
+The underlying helper `FBModelHierarchyController` was written by Todd Krabach.
 
 License
 -------
