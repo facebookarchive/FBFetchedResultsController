@@ -11,6 +11,8 @@
 		A2C991DD1A8C07C600B72416 /* FBFetchedResultsController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2C991DC1A8C07C600B72416 /* FBFetchedResultsController.m */; };
 		A2C991E31A8C07C600B72416 /* libFBFetchedResultsController.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A2C991D71A8C07C600B72416 /* libFBFetchedResultsController.a */; };
 		A2D8D29C1A8C07F700C96352 /* FBModelHierarchyController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2D8D2971A8C07F700C96352 /* FBModelHierarchyController.m */; };
+		A2D93C7D1A8D1352006683BF /* FBFetchedResultsControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A2D93C7C1A8D1352006683BF /* FBFetchedResultsControllerTests.m */; };
+		A2D93C801A8D152C006683BF /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A2D93C7E1A8D152C006683BF /* Model.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +47,8 @@
 		A2D8D2961A8C07F700C96352 /* FBModelHierarchyController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBModelHierarchyController.h; sourceTree = "<group>"; };
 		A2D8D2971A8C07F700C96352 /* FBModelHierarchyController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBModelHierarchyController.m; sourceTree = "<group>"; };
 		A2D8D2981A8C07F700C96352 /* FBModelHierarchyController+Mutating.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FBModelHierarchyController+Mutating.h"; sourceTree = "<group>"; };
+		A2D93C7C1A8D1352006683BF /* FBFetchedResultsControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBFetchedResultsControllerTests.m; sourceTree = "<group>"; };
+		A2D93C7F1A8D152C006683BF /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,7 +103,9 @@
 		A2C991E61A8C07C600B72416 /* FBFetchedResultsControllerTests */ = {
 			isa = PBXGroup;
 			children = (
+				A2D93C7C1A8D1352006683BF /* FBFetchedResultsControllerTests.m */,
 				A2C991E71A8C07C600B72416 /* Supporting Files */,
+				A2D93C7E1A8D152C006683BF /* Model.xcdatamodeld */,
 			);
 			path = FBFetchedResultsControllerTests;
 			sourceTree = "<group>";
@@ -209,6 +215,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A2D93C7D1A8D1352006683BF /* FBFetchedResultsControllerTests.m in Sources */,
+				A2D93C801A8D152C006683BF /* Model.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -376,6 +384,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		A2D93C7E1A8D152C006683BF /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				A2D93C7F1A8D152C006683BF /* Model.xcdatamodel */,
+			);
+			currentVersion = A2D93C7F1A8D152C006683BF /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = A2C991CF1A8C07C600B72416 /* Project object */;
 }

@@ -147,8 +147,8 @@ static NSHashTable *allFetchedResultsControllers; // weak
   // clear the delegate so we stop processing anything with that data controller
   _dataController.delegate = nil;
 
-  self.fetchedEntity = _fetchRequest.entity;
   NSArray *fetchedObjectsFiltered = [_managedObjectContext executeFetchRequest:_fetchRequest error:error];
+  self.fetchedEntity = _fetchRequest.entity;
   if (fetchedObjectsFiltered == nil) {
     self.dataController = nil;
     return NO;

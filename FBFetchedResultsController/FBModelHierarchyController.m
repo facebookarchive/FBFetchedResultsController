@@ -10,8 +10,6 @@
 
 #import "FBModelHierarchyController.h"
 
-#import <UIKit/UIKit.h>
-
 #import "FBModelHierarchyController+Mutating.h"
 
 #define FB_MODEL_HIERARCHY_CONTROLLER_START_STATE_CHANGE(change) do { \
@@ -316,8 +314,8 @@ NSComparator comparatorFromSortDescriptors(NSArray *sortDescriptors)
 
 - (id)objectInArrangedObjectsAtIndexPath:(NSIndexPath *)indexPath
 {
-  FBModelHierarchySection *sectionInfo = [_sectionInfoSet objectAtIndex:indexPath.section];
-  return [sectionInfo.objectSet objectAtIndex:indexPath.row];
+  FBModelHierarchySection *sectionInfo = [_sectionInfoSet objectAtIndex:[indexPath indexAtPosition:0]];
+  return [sectionInfo.objectSet objectAtIndex:[indexPath indexAtPosition:1]];
 }
 
 - (NSOrderedSet *)sections
@@ -427,7 +425,8 @@ sectionNameToSectionMap:(NSMutableDictionary *)sectionNameToSectionMap
     return nil;
   }
 
-  return [NSIndexPath indexPathForRow:row inSection:sectionIndex];
+  NSUInteger indexes[] = {row, sectionIndex};
+  return [NSIndexPath indexPathWithIndexes:indexes length:2];
 }
 
 - (NSIndexPath *)_insertObject:(id)object
