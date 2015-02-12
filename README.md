@@ -3,7 +3,11 @@ FBFetchedResultsController
 
 A drop-in replacement for `NSFetchedResultsController` built to work around the fact that `NSFetchedResultsController` does not work well with parent/child contexts. See `NSFetchedResultsController` for documentation.
 
-There's not much more to it — the API is exactly the same as `NSFetchedResultsController`'s.
+Usage
+-----
+
+- Use `FBFetchedResultsController` where you currently use `NSFetchedResultsController`
+- **Important:** Call `[FBFetchedResultsController +didMergeChangesFromContextDidSaveNotification:intoContext:]` any time you call `[NSManagedObjectContext -mergeChangesFromContextDidSaveNotification:]`.
 
 Authors
 -------
