@@ -1,0 +1,4 @@
+language: objective-c
+
+script: "xcodebuild -project FBFetchedResultsController.xcodeproj -scheme FBFetchedResultsController test"
+
