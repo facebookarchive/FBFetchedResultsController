@@ -1,6 +1,8 @@
 FBFetchedResultsController
 ==========================
 
+[![Build Status](https://travis-ci.org/facebook/FBFetchedResultsController.svg?branch=master)](https://travis-ci.org/facebook/FBFetchedResultsController)
+
 A drop-in replacement for `NSFetchedResultsController` built to work around the fact that `NSFetchedResultsController` does not work well with parent/child contexts.
 
 From Apple's [doc on NSManagedObject](https://developer.apple.com/library/ios/documentation/Cocoa/Reference/CoreDataFramework/Classes/NSManagedObjectContext_Class/):
