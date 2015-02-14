@@ -77,7 +77,9 @@
 				A2C991E61A8C07C600B72416 /* FBFetchedResultsControllerTests */,
 				A2C991D81A8C07C600B72416 /* Products */,
 			);
+			indentWidth = 2;
 			sourceTree = "<group>";
+			tabWidth = 2;
 		};
 		A2C991D81A8C07C600B72416 /* Products */ = {
 			isa = PBXGroup;
