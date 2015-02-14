@@ -149,7 +149,7 @@ change = NO; \
   NSMutableSet *_deletes;
   NSMutableSet *_inserts;
   NSMutableOrderedSet *_updates; // ordered by the original indexPath
-  CFMutableDictionaryRef _indexPathMap; // pointer equality for keys, and doesn't copy keys
+  NSMapTable *_indexPathMap; // pointer equality for keys, and doesn't copy keys
 }
 - (instancetype)init
 {
@@ -158,14 +158,10 @@ change = NO; \
     _inserts = [[NSMutableSet alloc] init];
     _updates = [[NSMutableOrderedSet alloc] init];
 
-    const CFDictionaryKeyCallBacks pointerEqualityKeyCallbacks;
-    _indexPathMap = CFDictionaryCreateMutable(NULL, 0, &pointerEqualityKeyCallbacks, &kCFTypeDictionaryValueCallBacks);
+    _indexPathMap = [NSMapTable mapTableWithKeyOptions:NSPointerFunctionsObjectPointerPersonality
+                                          valueOptions:0];
   }
   return self;
-}
-- (void)dealloc
-{
-  CFRelease(_indexPathMap);
 }
 - (NSSet *)deletes
 {
@@ -187,7 +183,7 @@ change = NO; \
   switch (changeType) {
     case FBModelChangeTypeDelete:{
       NSAssert(indexPath != nil, @"Delete to existing object must contain indexPath");
-      CFDictionarySetValue(_indexPathMap, (__bridge void *)object, (__bridge void *)indexPath);
+      [_indexPathMap setObject:indexPath forKey:object];
       [_deletes addObject:object];
       break;
     }
@@ -199,7 +195,7 @@ change = NO; \
     case FBModelChangeTypeUpdate:{
       if (![_updates containsObject:object]) {
         NSAssert(indexPath != nil, @"Update to existing object must contain indexPath");
-        CFDictionarySetValue(_indexPathMap, (__bridge void *)object, (__bridge void *)indexPath);
+        [_indexPathMap setObject:indexPath forKey:object];
         // sort all updates by their original indexPath
         NSUInteger destIndex = [_updates indexOfObject:object
                                          inSortedRange:NSMakeRange(0, [_updates count])
@@ -215,7 +211,7 @@ change = NO; \
 }
 - (NSIndexPath *)indexPathForObject:(id)object
 {
-  return CFDictionaryGetValue(_indexPathMap, (__bridge void *)object);
+  return [_indexPathMap objectForKey:object];
 }
 @end
 
@@ -739,10 +735,6 @@ sectionNameToSectionMap:newSectionNameToSectionMap
   [self endUpdate];
   FB_MODEL_HIERARCHY_CONTROLLER_END_STATE_CHANGE(_hasChange);
 }
-
-@end
-
-@implementation FBModelHierarchyController (Mutating)
 
 - (void)addObject:(id)object
 {
