@@ -13,6 +13,7 @@
 		A2D8D29C1A8C07F700C96352 /* FBModelHierarchyController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2D8D2971A8C07F700C96352 /* FBModelHierarchyController.m */; };
 		A2D93C7D1A8D1352006683BF /* FBFetchedResultsControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A2D93C7C1A8D1352006683BF /* FBFetchedResultsControllerTests.m */; };
 		A2D93C801A8D152C006683BF /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A2D93C7E1A8D152C006683BF /* Model.xcdatamodeld */; };
+		C4094ACF1A8F94F100FA2F6D /* FBTestFetchedResultsControllerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C4094ACE1A8F94F100FA2F6D /* FBTestFetchedResultsControllerDelegate.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,8 @@
 		A2D8D2981A8C07F700C96352 /* FBModelHierarchyController+Mutating.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FBModelHierarchyController+Mutating.h"; sourceTree = "<group>"; };
 		A2D93C7C1A8D1352006683BF /* FBFetchedResultsControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBFetchedResultsControllerTests.m; sourceTree = "<group>"; };
 		A2D93C7F1A8D152C006683BF /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		C4094ACD1A8F94F100FA2F6D /* FBTestFetchedResultsControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBTestFetchedResultsControllerDelegate.h; sourceTree = "<group>"; };
+		C4094ACE1A8F94F100FA2F6D /* FBTestFetchedResultsControllerDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBTestFetchedResultsControllerDelegate.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +111,8 @@
 				A2D93C7C1A8D1352006683BF /* FBFetchedResultsControllerTests.m */,
 				A2C991E71A8C07C600B72416 /* Supporting Files */,
 				A2D93C7E1A8D152C006683BF /* Model.xcdatamodeld */,
+				C4094ACD1A8F94F100FA2F6D /* FBTestFetchedResultsControllerDelegate.h */,
+				C4094ACE1A8F94F100FA2F6D /* FBTestFetchedResultsControllerDelegate.m */,
 			);
 			path = FBFetchedResultsControllerTests;
 			sourceTree = "<group>";
@@ -218,6 +223,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A2D93C7D1A8D1352006683BF /* FBFetchedResultsControllerTests.m in Sources */,
+				C4094ACF1A8F94F100FA2F6D /* FBTestFetchedResultsControllerDelegate.m in Sources */,
 				A2D93C801A8D152C006683BF /* Model.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
