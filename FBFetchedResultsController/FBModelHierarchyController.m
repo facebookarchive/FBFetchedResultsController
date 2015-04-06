@@ -619,28 +619,20 @@ sectionNameToSectionMap:newSectionNameToSectionMap
     }
   }
 
-  // notify the delegate of all of the section changes
+  // notify the delegate of all of the section change inserts
   for (FBModelHierarchySectionChange *sectionChange in sectionChangeSet) {
     id sectionName = sectionChange.section.name ?: [NSNull null];
-    switch (sectionChange.changeType) {
-      case FBModelChangeTypeInsert:{
-        sectionChange.index = [newSectionInfoSet indexOfObject:newSectionNameToSectionMap[sectionName]];
-        break;
-      }
-      case FBModelChangeTypeDelete:{
-        // index already represents the old index
-        break;
-      }
-      case FBModelChangeTypeMove:
-      case FBModelChangeTypeUpdate:{
-        NSAssert(NO, @"Invalid change type for a section");
-        continue;
-      }
+    if (sectionChange.changeType == FBModelChangeTypeInsert) {
+      id sectionName = sectionChange.section.name ?: [NSNull null];
+      sectionChange.index = [newSectionInfoSet indexOfObject:newSectionNameToSectionMap[sectionName]];
+      [_delegate modelHierarchyController:self
+                         didChangeSection:sectionChange.section
+                                  atIndex:sectionChange.index
+                            forChangeType:sectionChange.changeType];
+    } else {
+      // Moves/updates are invalid for section changes
+      NSAssert(sectionChange.changeType == FBModelChangeTypeDelete, @"Invalid change type for section change");
     }
-    [_delegate modelHierarchyController:self
-                       didChangeSection:sectionChange.section
-                                atIndex:sectionChange.index
-                          forChangeType:sectionChange.changeType];
   }
 
   // notify the delegate of all of the object changes
@@ -677,6 +669,20 @@ sectionNameToSectionMap:newSectionNameToSectionMap
                             atIndexPath:objectChange.indexPath
                           forChangeType:objectChange.changeType
                            newIndexPath:newIndexPath];
+  }
+
+  // notify the delegate of all the section deletes
+  for (FBModelHierarchySectionChange *sectionChange in sectionChangeSet) {
+    if (sectionChange.changeType == FBModelChangeTypeDelete) {
+      // index already represents the old index
+      [_delegate modelHierarchyController:self
+                         didChangeSection:sectionChange.section
+                                  atIndex:sectionChange.index
+                            forChangeType:sectionChange.changeType];
+    } else {
+      // Moves/updates are invalid for section changes
+      NSAssert(sectionChange.changeType == FBModelChangeTypeInsert, @"Invalid change type for section change");
+    }
   }
 
   self.sectionInfoSet = newSectionInfoSet;
