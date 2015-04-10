@@ -621,7 +621,6 @@ sectionNameToSectionMap:newSectionNameToSectionMap
 
   // notify the delegate of all of the section change inserts
   for (FBModelHierarchySectionChange *sectionChange in sectionChangeSet) {
-    id sectionName = sectionChange.section.name ?: [NSNull null];
     if (sectionChange.changeType == FBModelChangeTypeInsert) {
       id sectionName = sectionChange.section.name ?: [NSNull null];
       sectionChange.index = [newSectionInfoSet indexOfObject:newSectionNameToSectionMap[sectionName]];
