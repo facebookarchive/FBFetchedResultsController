@@ -586,7 +586,7 @@ sectionNameToSectionMap:newSectionNameToSectionMap
 
   // look for empty sections and delete them
   for (FBModelHierarchySection *sectionInfo in possibleEmptySections) {
-    if (sectionInfo.objects.count == 0 && sectionInfo != _defaultSection) {
+    if (sectionInfo.objects.count == 0 && ![sectionInfo isEqual:_defaultSection]) {
       // We want to look up the original index of the section, so use _sectionInfoSet, not our modified local copy.
       NSUInteger originalSectionIndex = [_sectionInfoSet indexOfObject:sectionInfo];
       NSAssert(originalSectionIndex != NSNotFound, @"Expected to find sectionInfo in _sectionInfoSet");
