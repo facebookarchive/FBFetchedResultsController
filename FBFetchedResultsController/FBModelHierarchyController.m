@@ -220,6 +220,7 @@ change = NO; \
 @property (nonatomic, retain) NSOrderedSet *sectionInfoSet;           // Set([name])  // sorted by sectionName
 @property (nonatomic, retain) NSDictionary *sectionNameToSectionMap;  // name => section
 @property (nonatomic, retain) FBModelHierarchySection *defaultSection;
+@property (nonatomic) BOOL delegateWillChangeCallMade;
 @end
 
 @implementation FBModelHierarchyController
@@ -334,6 +335,15 @@ NSComparator comparatorFromSortDescriptors(NSArray *sortDescriptors)
 }
 
 #pragma mark - Helper Methods
+
+- (void)_makeWillChangeDelegateCallIfNecessary
+{
+  if (!self.delegateWillChangeCallMade) {
+    [_delegate modelHierarchyControllerWillChangeContent:self];
+    self.delegateWillChangeCallMade = YES;
+  }
+}
+
 
 - (BOOL)_deleteObject:(id)object
      inSectionInfoSet:(NSMutableOrderedSet *)sectionInfoSet
@@ -624,6 +634,7 @@ sectionNameToSectionMap:newSectionNameToSectionMap
     if (sectionChange.changeType == FBModelChangeTypeInsert) {
       id sectionName = sectionChange.section.name ?: [NSNull null];
       sectionChange.index = [newSectionInfoSet indexOfObject:newSectionNameToSectionMap[sectionName]];
+      [self _makeWillChangeDelegateCallIfNecessary];
       [_delegate modelHierarchyController:self
                          didChangeSection:sectionChange.section
                                   atIndex:sectionChange.index
@@ -663,6 +674,7 @@ sectionNameToSectionMap:newSectionNameToSectionMap
         break;
       }
     }
+    [self _makeWillChangeDelegateCallIfNecessary];
     [_delegate modelHierarchyController:self
                         didChangeObject:objectChange.object
                             atIndexPath:objectChange.indexPath
@@ -674,6 +686,7 @@ sectionNameToSectionMap:newSectionNameToSectionMap
   for (FBModelHierarchySectionChange *sectionChange in sectionChangeSet) {
     if (sectionChange.changeType == FBModelChangeTypeDelete) {
       // index already represents the old index
+      [self _makeWillChangeDelegateCallIfNecessary];
       [_delegate modelHierarchyController:self
                          didChangeSection:sectionChange.section
                                   atIndex:sectionChange.index
@@ -817,7 +830,11 @@ sectionNameToSectionMap:newSectionNameToSectionMap
     FBModelHierarchyPendingChanges *pendingChanges = _pendingChanges;
     self.pendingChanges = nil;
     [self _processPendingChanges:pendingChanges];
-    [_delegate modelHierarchyControllerDidChangeContent:self];
+    // Only call "didChange" if "willChange" was called ever.
+    if (self.delegateWillChangeCallMade) {
+      [_delegate modelHierarchyControllerDidChangeContent:self];
+      self.delegateWillChangeCallMade = NO;
+    }
     if (_duplicateInserts > 0) {
       _duplicateInserts = 0;
     }
