@@ -431,7 +431,7 @@ sectionNameToSectionMap:(NSMutableDictionary *)sectionNameToSectionMap
     return nil;
   }
 
-  NSUInteger indexes[] = {row, sectionIndex};
+  NSUInteger indexes[] = {sectionIndex, row};
   return [NSIndexPath indexPathWithIndexes:indexes length:2];
 }
 
