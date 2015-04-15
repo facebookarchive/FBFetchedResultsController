@@ -815,6 +815,7 @@ sectionNameToSectionMap:newSectionNameToSectionMap
     FBModelHierarchyPendingChanges *pendingChanges = [[FBModelHierarchyPendingChanges alloc] init];
     self.pendingChanges = pendingChanges;
     [_delegate modelHierarchyControllerWillChangeContent:self];
+    _delegateWillChangeCallMade = YES;
   }
 }
 
