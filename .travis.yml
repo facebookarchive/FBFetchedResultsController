@@ -1,8 +1,5 @@
 language: objective-c
-before_install:
-  - "gem install activesupport"
-  - "gem update cocoapods"
-  - "gem install slather"
-script: "xcodebuild -project FBFetchedResultsController.xcodeproj -scheme FBFetchedResultsController test"
-after_success:
-  - slather
+before_install: gem install slather
+script: xcodebuild -project FBFetchedResultsController.xcodeproj -scheme FBFetchedResultsController test
+after_success: slather
+
