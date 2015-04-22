@@ -2,6 +2,7 @@ FBFetchedResultsController
 ==========================
 
 [![Build Status](https://travis-ci.org/facebook/FBFetchedResultsController.svg?branch=master)](https://travis-ci.org/facebook/FBFetchedResultsController)
+[![Coverage Status](https://coveralls.io/repos/facebook/FBFetchedResultsController/badge.svg)](https://coveralls.io/r/facebook/FBFetchedResultsController)
 
 A drop-in replacement for `NSFetchedResultsController` built to work around the fact that `NSFetchedResultsController` does not work well with parent/child contexts.
 
