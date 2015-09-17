@@ -10,6 +10,8 @@
 
 #import <CoreData/CoreData.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @protocol FBFetchedResultsControllerDelegate;
 
 /**
@@ -24,27 +26,27 @@
 + (void)didMergeChangesFromContextDidSaveNotification:(NSNotification *)notification
                                           intoContext:(NSManagedObjectContext *)context;
 
-+ (void)deleteCacheWithName:(NSString *)name;
++ (void)deleteCacheWithName:(nullable NSString *)name;
 
 - (instancetype)initWithFetchRequest:(NSFetchRequest *)fetchRequest
                 managedObjectContext:(NSManagedObjectContext *)managedObjectContext
-                  sectionNameKeyPath:(NSString *)sectionNameKeyPath
-                           cacheName:(NSString *)cacheName;
+                  sectionNameKeyPath:(nullable NSString *)sectionNameKeyPath
+                           cacheName:(nullable NSString *)cacheName;
 
-@property (nonatomic, copy, readonly) NSString *cacheName; // not used
-@property (nonatomic, assign) id <FBFetchedResultsControllerDelegate> delegate;
-@property (nonatomic, copy, readonly) NSArray *fetchedObjects;
+@property (nullable, nonatomic, copy, readonly) NSString *cacheName; // not used
+@property (nullable, nonatomic, assign) id <FBFetchedResultsControllerDelegate> delegate;
+@property (nullable, nonatomic, copy, readonly) NSArray<__kindof NSManagedObject *> *fetchedObjects;
 @property (nonatomic, retain, readonly) NSFetchRequest *fetchRequest;
 @property (nonatomic, retain, readonly) NSManagedObjectContext *managedObjectContext;
-@property (nonatomic, copy, readonly) NSArray *sectionIndexTitles;
+@property (nonatomic, copy, readonly) NSArray<NSString *> *sectionIndexTitles;
 @property (nonatomic, copy, readonly) NSString *sectionNameKeyPath;
-@property (nonatomic, copy, readonly) NSArray *sections;
+@property (nonatomic, copy, readonly) NSArray<id<NSFetchedResultsSectionInfo>> *sections;
 
-- (NSIndexPath *)indexPathForObject:(id)object;
-- (id)objectAtIndexPath:(NSIndexPath *)indexPath;
+- (nullable NSIndexPath *)indexPathForObject:(__kindof NSManagedObject *)object;
+- (__kindof NSManagedObject *)objectAtIndexPath:(NSIndexPath *)indexPath;
 - (BOOL)performFetch:(NSError **)error;
 - (NSInteger)sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)sectionIndex;
-- (NSString *)sectionIndexTitleForSectionName:(NSString *)sectionName;
+- (nullable NSString *)sectionIndexTitleForSectionName:(NSString *)sectionName;
 
 @end
 
@@ -55,10 +57,10 @@
 - (void)controllerWillChangeContent:(FBFetchedResultsController *)controller;
 
 - (void)controller:(FBFetchedResultsController *)controller
-   didChangeObject:(id)anObject
-       atIndexPath:(NSIndexPath *)indexPath
+   didChangeObject:(__kindof NSManagedObject *)anObject
+       atIndexPath:(nullable NSIndexPath *)indexPath
      forChangeType:(NSFetchedResultsChangeType)type
-      newIndexPath:(NSIndexPath *)newIndexPath;
+      newIndexPath:(nullable NSIndexPath *)newIndexPath;
 
 - (void)controller:(FBFetchedResultsController *)controller
   didChangeSection:(id<NSFetchedResultsSectionInfo>)sectionInfo
@@ -71,3 +73,4 @@
 
 @end
 
+NS_ASSUME_NONNULL_END
