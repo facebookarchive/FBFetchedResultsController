@@ -1,4 +1,5 @@
 language: objective-c
-
-script: "xcodebuild -project FBFetchedResultsController.xcodeproj -scheme FBFetchedResultsController test"
+before_install: gem install slather
+script: xcodebuild -project FBFetchedResultsController.xcodeproj -scheme FBFetchedResultsController test
+after_success: slather
 
